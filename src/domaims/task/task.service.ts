@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { createUserDTO } from '../user/dto/createUserDTO.dto';
 import { CreateTaskDto } from './dto/createTaskDTO.dto';
 import { Task, TaskDocument } from './task.model';
 
@@ -11,12 +10,11 @@ export class TaskService {
 
   async create(createTask: CreateTaskDto) {
     return this.taskModel.create(createTask);
-
   }
 
-  async findAll() {
+  async findAll(user_id: string) {
     return await this.taskModel.find({
-      user_id: "636cfa4da58abf056d5ddd48"
+      user_id
     }).exec();
   }
 
@@ -43,6 +41,6 @@ export class TaskService {
   }
 
   checked(id: string) {
-    return this.taskModel.findById (id)
+    return this.taskModel.findById(id)
   }
 }

@@ -45,7 +45,7 @@ export class UserService {
 
         var token = jwt.sign({
             _id: String(user._id),
-            name: user.name
+            name: user.name,
         }, 'secretKey');
 
         return {
